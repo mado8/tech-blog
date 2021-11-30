@@ -1,0 +1,31 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "This application uses mySQL, Sequelize, Handlebars, and Express.js to allow users to login, create a blog post, delete, and interact with one another with a commenting system.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mado8/tech-blog.git"
+  },
+  "author": "madeline donley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mado8/tech-blog/issues"
+  },
+  "keywords": [],
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
+}

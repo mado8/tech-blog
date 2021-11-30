@@ -42,3 +42,5 @@ router.delete('/:id', async (req, res) => {
 
 // create route to get all comments using user id
 // create route to get single comment using id and return its corresponding post as well
+
+module.exports = router;

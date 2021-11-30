@@ -19,28 +19,21 @@ Comments.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        post_id: {
-            type: DataTypes.INTEGER,
-            references: {
-            model: 'posts',
-            key: 'id',
-             },
-        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-            model: 'users',
+            model: 'user',
             key: 'id',
             },
-        }
+        },
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'posts',
+        modelName: 'comments',
     }
 );
 
-module.exports = Posts;
+module.exports = Comments;

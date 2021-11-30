@@ -10,6 +10,7 @@ Posts.belongsTo(User, {
 // User has many Posts
 User.hasMany(Posts, {
     foreignKey: 'user_id',
+    onDelete: 'CASCADE',
 })
 // Comments belong to User
 Comments.belongsTo(User, {
@@ -18,6 +19,7 @@ Comments.belongsTo(User, {
 // User has many Comments
 User.hasMany(Comments, {
     foreignKey: 'user_id',
+    onDelete: 'CASCADE',
 })
 // Comments belong to Posts through postComments
 Comments.belongsTo(Posts, {
@@ -32,6 +34,7 @@ Posts.hasMany(Comments, {
       model: PostComments,
     },
     as: 'post_comment',
+    onDelete: 'CASCADE',
   })
 
   module.exports = {

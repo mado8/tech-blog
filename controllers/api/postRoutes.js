@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Comments, PostComments, Posts, User } = require('../../models');
+const { post } = require('./commentRoutes');
 
 // route to create post
 router.post('/', async (req, res) => {
@@ -59,9 +60,36 @@ router.get('/:id', async (req, res) => {
             return res.status(404).json({ message: 'Post ID not Found.' });
         };
 
+        const post = postData.get({ plain: true })
+
+        // render post page and comments --> 
+        // res.render('blog', { post })
         res.status(200).json(postData);
 
     } catch (err) {
         res.status(400).json(err)
     }
 })
+
+// route to get all posts from all users for main page
+router.get('/', async (req, res) => {
+    try {
+        const postData = User.findAll({
+            include: [{model: Posts}]
+        });
+
+        // map function to seperate data
+        const posts = postData.map((blog) =>
+            blog.get({plain: true})
+        )
+
+        // render all posts on main page --> 
+        // res.render('main', { posts })
+        res.status(200).json(postData);
+
+    } catch (err) {
+        res.status(400).json(err);
+    }
+})
+
+module.exports = router;

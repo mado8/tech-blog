@@ -1,0 +1,243 @@
+body {
+    background-color: rgb(255, 251, 247);
+}
+
+.top-nav {
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(206, 206, 206);
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.nav-link {
+    justify-content: flex-end;
+    color: rgb(165, 165, 165);
+}
+
+#blog-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: fit-content;
+    margin-top: 100px;
+    width: 90vw;
+}
+
+.card {
+    border: none;
+    height: fit-content;
+}
+
+.card-img {
+    background-color: rgb(235, 209, 186);
+    border-radius: 0px;
+    height: 40vh;
+    width: 90vw;
+}
+
+.card-title {
+    font-size: 2em;
+}
+
+.card-text {
+    font-size: 1.2em;
+}
+
+#blog-post {
+    padding: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#blog-title {
+    border-radius: 15px 15px 0px 0px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#blog-title, #blog-content {
+    margin-left: 40px;
+    margin-right:40px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(96, 96, 96);
+    padding: 20px;
+    z-index: 100;
+}
+
+#blog-content {
+    height: 70vh;
+    border-radius: 0px 0px 15px 15px;
+    overflow-y: scroll;
+}
+
+.background-white {
+    background-color: rgb(245, 235, 225);
+    height: 60vh;
+    width: 90vw;
+}
+
+.card-header {
+    background-color: rgb(235, 209, 186);
+    border-bottom: none;
+}
+
+.card-body, .card-header, .wide-button, .comment-header{
+    color: rgb(118, 118, 118);
+}
+
+#add-comment {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.form-control {
+    border-radius: 15px;
+    width: 90vw;
+    height: 120px;
+    padding: 15px;
+    color:rgb(118, 118, 118);
+    font-size: 1.1rem;
+}
+
+.submit-section {
+    display: flex;
+    justify-content: center;
+}
+
+.wide-button {
+    font-size: 1em;
+    border-radius: 10px;
+    width: 90%;
+    height: 50px;
+    border: none;
+    background-color: rgb(245, 235, 225);
+}
+
+.primary-button {
+    width: 70%;
+    margin-bottom: 100px;
+}
+
+.secondary-button {
+    background-color: rgb(235, 209, 186);
+    font-size: .8em;
+    width: 50%;
+    height: 40px;
+    margin-bottom: 50px;
+}
+
+#comment-button {
+    margin-bottom: 8px;
+}
+
+.wide-button:hover {
+    background-color: rgb(235, 209, 186);
+}
+
+.card-header {
+    height: 50px;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header:first-child {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card-text {
+    font-size: 1.1em;
+}
+
+#comment-div {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px
+}
+
+.comment-header {
+    border-bottom: 2px solid rgb(165, 165, 165);
+    font-weight: normal;
+    font-size: 1.2em;
+}
+
+#comment {
+    border-radius: 10px;
+    width: 90vw;
+}
+
+#form-section {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 2vh;
+    margin-top: 200px;
+    
+}
+
+#form-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#login-head {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    margin-bottom: 20px;
+}
+
+#login-head h2 {
+    font-weight:650;
+    color:rgb(96, 96, 96);
+    font-size: 1.2em;
+}
+
+#signup-section {
+    display: flex;
+    justify-content: center;
+}
+
+#signup-section h3 {
+    color: rgb(165, 165, 165);
+    font-size: .8em;
+}
+
+input {
+    width: 56vw;
+    height: 8vh;
+    background-color: rgb(240, 240, 240);
+    border:none;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    #blog-title, #blog-content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    #blog-center {
+        margin-top: 200px;
+    }
+}

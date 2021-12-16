@@ -1,0 +1,32 @@
+[
+    {
+        "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ab debitis distinctioLorem",
+        "user_id": 1,
+        "post_id": 3
+    },
+    {
+        "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ab debitis distinctioLorem",
+        "user_id": 2,
+        "post_id": 1
+    },
+    {
+        "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ab debitis distinctioLorem ",
+        "user_id": 3,
+        "post_id": 2
+    },
+    {
+        "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ab debitis distinctioLorem ",
+        "user_id": 1,
+        "post_id": 2
+    },
+    {
+        "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ab debitis distinctioLorem ",
+        "user_id": 2,
+        "post_id": 3
+    },
+    {
+        "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ab debitis distinctioLorem ",
+        "user_id": 3,
+        "post_id": 1
+    }
+]

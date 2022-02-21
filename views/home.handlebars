@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg fixed-top top-nav">
+    <div class="container-fluid">
+      <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+          </li>
+          {{#if loggedIn}}
+          <li class="nav-item login">
+            <a class="nav-link" id="logout">Logout</a>
+          </li>
+          {{else}}
+          <li class="nav-item login">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+</nav>
+
+<div class="all-posts">
+    {{#each post}}
+    <div class="post-card">
+    <div class="card mb-3">
+        <div id="home-center">
+            <a class="home-post" href="/api/post/{{id}}">
+                <div class="card-body card-border">
+
+                    <div class="home-center">
+                        <div>
+
+                            <h5 class="card-title home-center">{{title}}</h5>
+                            <p class="card-text">{{body}}</p>
+                            <div class="card-desc">
+                                <p class="card-text"><small class="text-muted">Created by {{user.username}}</small></p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+    {{/each}}
+</div>
+
+<script src="/js/logout.js"></script>

@@ -1,27 +1,32 @@
-const loginButton = document.getElementById('login-button');
+let loginButton = document.getElementById('login-button')
 
 const loginFormHandler = async (event) => {
-    // Stop the browser from submitting the form so we can do so with JavaScript
-    event.preventDefault();
-  
-    // Gather the data from the form elements on the page
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-  
-    if (email && password) {
-      // Send the e-mail and password to the server
-      const response = await fetch('/api/users/login', {
+  event.preventDefault()
+
+  const username = document.querySelector('#username-login').value.trim()
+  const password = document.querySelector('#password-login').value.trim()
+
+  userdata = { username: username, password: password }
+  try {
+      await fetch('/api/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
         headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/');
-      } else {
-        alert('Failed to log in');
-      }
-    }
-  };
-  
-loginButton.addEventListener('submit', loginFormHandler);
+        body: JSON.stringify(userdata),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message)
+        if(data.message == 'Incorrect username or password, please try again') {
+          return;
+        }
+        window.location.href = `/home`
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+    } catch (err) {
+      console.log(err)
+}
+}
+
+loginButton.addEventListener('click', loginFormHandler)

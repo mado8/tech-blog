@@ -1,5 +1,6 @@
 const postButton = document.getElementById('post-button');
 const deleteButton = document.getElementById('delete-button');
+const newPostButton = document.getElementById('new-post');
 
 const getPost = async (post_id) => {
     const response = await fetch (`/api/post/${post_id}`, {
@@ -12,16 +13,35 @@ const getPost = async (post_id) => {
     }
 };
 
-const createPost = async () => {
-    const response = await fetch ('/api/post', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-    });
+const newPost = () => {
+    return window.location.href = '/create'
+}
 
-    if (response.ok) {
-         // render users posts/ loggedin homepage
-    } else {
-        alert(response.statusText);
+const createPost = async (event) => {
+    event.preventDefault()
+
+    const username = document.querySelector('#username-signup').value.trim()
+    const password = document.querySelector('#password-signup').value.trim()
+  
+    userdata = { username: username, password: password }
+    try {
+      fetch('/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userdata),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data)
+          window.location.href = `/home`
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    } catch (err) {
+      console.log(err)
     }
 };
 
@@ -38,4 +58,4 @@ const deletePost = async (post_id) => {
     }
 };
 
-postButton.addEventListener('click', createPost);
+newPostButton.addEventListener('click', newPost);

@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg fixed-top top-nav">
+    <div class="container-fluid">
+      <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+          </li>
+          {{#if loggedIn}}
+          <li class="nav-item login">
+            <a class="nav-link" id="logout">Logout</a>
+          </li>
+          {{else}}
+          <li class="nav-item login">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+</nav>
+
+<div id="blog-post">
+  <div id="blog-center">
+    <div class="card">
+      <div class="card-img"></div>
+      <div class="card-img background-white"></div>
+      <div class="card-img-overlay">
+        <div class="card-header">
+          <p>Created by {{post.user.username}}</p>
+          <p>{{format_date post.created_at}}</p>
+        </div>
+        <div id="blog-title">
+          <h5 class="card-title">{{post.title}}</h5>
+        </div>
+        <div id="blog-content">
+          <p class="card-text">{{post.body}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="header-div">
+  <h3 class="comment-header">Comments</h3>
+</div>
+
+<div id="add-comment">
+  <form>
+    <div class="mb-3">
+      <textarea id="comment-input" class="form-control" placeholder="Add comment..." post-id={{post.id}}></textarea>
+    </div>
+  </form>
+</div>
+
+<div class="submit-section">
+  <button type="submit" class="btn wide-button" id="comment-button">Post</button>
+</div>
+
+<div class="comment-section">
+  {{#each comments}}
+  <div id="comment-div">
+    <div class="card mb-3" id="comment">
+      <div class="card-header">
+        <p>{{this.user.username}}</p>
+        <p>{{format_date this.created_at}}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{this.body}}</p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+<script src="/js/comment.js"></script>
+<script src="/js/logout.js"></script>

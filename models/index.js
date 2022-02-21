@@ -1,7 +1,6 @@
 const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
-const PostComment = require('./PostComment');
 
 // Posts belong to User 
 Post.belongsTo(User, {
@@ -23,17 +22,12 @@ User.hasMany(Comment, {
 })
 // Comments belong to Posts through postComments
 Comment.belongsTo(Post, {
-    through: {
-      model: PostComment,
-    },
-    as: 'comment_post',
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE',
   })
 // Posts have many Comments through postComments
-Post.belongsToMany(Comment, {
-    through: {
-      model: PostComment,
-    },
-    as: 'post_comment',
+Post.hasMany(Comment, {
+    foreignKey: 'post_id',
     onDelete: 'CASCADE',
   })
 
@@ -41,5 +35,4 @@ Post.belongsToMany(Comment, {
     User,
     Post,
     Comment,
-    PostComment,
   };

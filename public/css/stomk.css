@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(250, 245, 241);
+    background-color: rgb(255, 251, 247);
 }
 
 .top-nav {
@@ -46,6 +46,21 @@ body {
 
 .card {
     border: none;
+    height: fit-content;
+    width: 90vw;
+}
+
+.card-img {
+    background-color: rgb(235, 209, 186);
+    border-radius: 0px;
+    height: 40vh;
+    width: 90vw;
+}
+
+.card-img-home {
+    background-color: rgb(235, 209, 186);
+    border-radius: 0px;
+    height: 30vh;
     width: 90vw;
 }
 
@@ -62,6 +77,10 @@ body {
     color: rgb(118, 118, 118);
 }
 
+.card-border {
+    border:15px solid rgb(235, 209, 186)
+}
+
 #blog-post {
     padding: 30px;
     margin-left: 50px;
@@ -70,7 +89,16 @@ body {
     justify-content: center;
 }
 
+#blog-title {
+    border-radius: 15px 15px 0px 0px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
 #blog-title, #blog-content, .homepage-blog-content {
+    margin-left: 40px;
+    margin-right:40px;
     background-color: rgb(255, 255, 255);
     color: rgb(96, 96, 96);
     padding: 20px;
@@ -78,12 +106,19 @@ body {
 }
 
 #blog-content {
-    height: 60vh;
+    height: 70vh;
+    border-radius: 0px 0px 15px 15px;
+    overflow-y: scroll;
+}
+
+.homepage-blog-content {
+    height: 20vh;
+    border-radius: 0px 0px 15px 15px;
 }
 
 .background-white {
     background-color: rgb(245, 235, 225);
-    height: 86vh;
+    height: 60vh;
     width: 90vw;
 }
 
@@ -100,12 +135,6 @@ body {
 
 .card-body, .card-header, .wide-button, .comment-header{
     color: rgb(118, 118, 118);
-}
-
-.header-div {
-    display: flex;
-    justify-content: center;
-    margin-top: 25vh;
 }
 
 #add-comment {
@@ -245,4 +274,17 @@ input {
     border:none;
     border-radius: 5px;
     padding-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    #blog-title, #blog-content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    #blog-center {
+        margin-top: 200px;
+    }
 }

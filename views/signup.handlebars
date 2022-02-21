@@ -1,0 +1,61 @@
+    <nav class="navbar navbar-expand-lg fixed-top top-nav">
+    <div class="container-fluid">
+      <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+          </li>
+          {{#if loggedIn}}
+          <li class="nav-item login">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {{else}}
+          <li class="nav-item login">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+</nav>
+    
+    <div>
+
+      <div id="form-section">
+        <div id="form-container">
+          <div id="login-head">
+            <h2>SIGN UP</h2>
+          </div>
+  
+          <form class="form login-form">
+            <div class="username-div">
+              <input class="form-input" type="text" id="username-signup" placeholder="✎ username"/>
+            </div>
+          </form>
+
+          <form class="form login-form">
+            <div class="password-div">
+              <input class="form-input" type="password" id="password-signup" placeholder="✎ password"/>
+            </div>
+          </form>
+  
+          <div class="submit-section">
+            <button class="wide-button btn btn-primary primary-button" id="signup-button" type="submit">Sign Up</button>
+          </div>
+        </div>
+      </div>
+  
+      <div id="signup-section">
+        <h3>or</h3>
+      </div>
+
+      <div class="submit-section">
+        <button class="wide-button btn btn-primary secondary-button" id="login-button-secondary"><a href="/login">Login</a></button>
+      </div>
+      
+    </div>
+
+    <script src="/js/signup.js"></script>

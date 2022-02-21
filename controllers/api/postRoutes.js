@@ -1,11 +1,47 @@
 const router = require('express').Router();
-const { Comments, PostComments, Posts, User } = require('../../models');
-const { post } = require('./commentRoutes');
+const { Comment, Post, User } = require('../../models');
+const formatDate = require('../../utils/helpers')
+const withAuth = require('../../utils/auth');
+
+// route to get a single post with post id and include its comments
+router.get('/:id', withAuth , async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [User],
+        });
+        const commentData = await Comment.findAll({
+            where: {post_id: req.params.id},
+            include: [User]
+        })
+
+        if(!postData) {
+            return res.status(404).json({ message: 'Post ID not Found.' });
+        };
+
+        const loggedIn = req.session.logged_in
+
+        const post = postData.get({ plain: true });
+
+        const comments = commentData.map((comment) => comment.get({plain:true}))
+
+        console.log(comments)
+        // render post page and comments --> 
+        res.render('post', { 
+            loggedIn,
+            post,
+            comments,
+         })
+        // res.status(200).json(postData);
+
+    } catch (err) {
+        res.status(400).json(err)
+    }
+})
 
 // route to create post
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
-        const postData = await Posts.create(req.body);
+        const postData = await Post.create(req.body);
         res.status(200).json(postData);
 
     } catch (err) {
@@ -14,9 +50,9 @@ router.post('/', async (req, res) => {
 });
 
 // route to edit post
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Posts.update(req.body.data, {
+        const postData = await Post.update(req.body.data, {
             where: {id: req.params.id}
         });
 
@@ -32,9 +68,9 @@ router.put('/:id', async (req, res) => {
 })
 
 // route to delete post
-router.delete('/:id', async (req,res) => {
+router.delete('/:id', withAuth,  async (req,res) => {
     try {
-        const postData = await Posts.destroy({
+        const postData = await Post.destroy({
             where: {id: req.params.id}
         });
 
@@ -42,49 +78,6 @@ router.delete('/:id', async (req,res) => {
             return res.status(404).json({ message: 'Post ID not Found.' });
         }
 
-        res.status(200).json(postData);
-
-    } catch (err) {
-        res.status(400).json(err);
-    }
-})
-
-// route to get a single post with post id and include its comments
-router.get('/:id', async (req, res) => {
-    try {
-        const postData = await Posts.findByPk(req.params.id, {
-            include: [{model: Comments, through: PostComments, as: 'post_comments'}]
-        });
-
-        if(!postData) {
-            return res.status(404).json({ message: 'Post ID not Found.' });
-        };
-
-        const post = postData.get({ plain: true })
-
-        // render post page and comments --> 
-        // res.render('blog', { post })
-        res.status(200).json(postData);
-
-    } catch (err) {
-        res.status(400).json(err)
-    }
-})
-
-// route to get all posts from all users for main page
-router.get('/', async (req, res) => {
-    try {
-        const postData = User.findAll({
-            include: [{model: Posts}]
-        });
-
-        // map function to seperate data
-        const posts = postData.map((blog) =>
-            blog.get({plain: true})
-        )
-
-        // render all posts on main page --> 
-        // res.render('main', { posts })
         res.status(200).json(postData);
 
     } catch (err) {

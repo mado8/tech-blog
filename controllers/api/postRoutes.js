@@ -3,47 +3,14 @@ const { Comment, Post, User } = require('../../models');
 const formatDate = require('../../utils/helpers')
 const withAuth = require('../../utils/auth');
 
-// route to get a single post with post id and include its comments
-router.get('/:id', withAuth , async (req, res) => {
-    try {
-        const postData = await Post.findByPk(req.params.id, {
-            include: [User],
-        });
-        const commentData = await Comment.findAll({
-            where: {post_id: req.params.id},
-            include: [User]
-        })
-
-        req.session.post_id = req.params.id;
-
-        if(!postData) {
-            return res.status(404).json({ message: 'Post ID not Found.' });
-        };
-
-        const loggedIn = req.session.logged_in
-
-        const post = postData.get({ plain: true });
-
-        const comments = commentData.map((comment) => comment.get({plain:true}))
-
-        console.log(comments)
-        // render post page and comments --> 
-        res.render('post', { 
-            loggedIn,
-            post,
-            comments,
-         })
-        // res.status(200).json(postData);
-
-    } catch (err) {
-        res.status(400).json(err)
-    }
-})
-
 // route to create post
 router.post('/', withAuth, async (req, res) => {
     try {
-        const postData = await Post.create(req.body);
+        const postData = await Post.create({
+            title: req.body.title,
+            body: req.body.body,
+            user_id: req.session.user_id
+        });
         res.status(200).json(postData);
 
     } catch (err) {
@@ -54,9 +21,12 @@ router.post('/', withAuth, async (req, res) => {
 // route to edit post
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.update(req.body.data, {
-            where: {id: req.params.id}
-        });
+        const postData = await Post.update({
+            title: req.body.title,
+            body: req.body.body,
+        }, 
+        {where: {id: req.params.id}}
+        );
 
         if(!postData) {
             return res.status(404).json({ message: 'Post ID not Found.' });

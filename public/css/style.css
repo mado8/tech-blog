@@ -29,7 +29,6 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
-    height: fit-content;
     margin-top: 100px;
     width: 90vw;
 }
@@ -42,6 +41,7 @@ body {
 .card-desc {
     display: flex;
     justify-content: space-between;
+    width: 85vw;
 }
 
 .card {
@@ -154,6 +154,10 @@ body {
     margin-bottom: 8px;
 }
 
+#post-create-button {
+    margin-bottom: 50px;
+}
+
 .wide-button:hover {
     background-color: rgb(235, 209, 186);
 }
@@ -245,4 +249,22 @@ input {
     border:none;
     border-radius: 5px;
     padding-left: 10px;
+}
+
+#title-input,
+#text-input {
+    width: 100%;
+    border: none;
+    text-align: center;
+    background-color: rgb(250, 246, 240);
+    margin: 0px;
+    padding: 0px;
+}
+
+#text-input {
+    height: 50vh;
+}
+
+.user-actions button{
+    margin-bottom: 20px;
 }

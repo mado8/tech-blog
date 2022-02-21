@@ -28,39 +28,20 @@
       <div class="card-img"></div>
       <div class="card-img background-white"></div>
       <div class="card-img-overlay">
-        <div class="user actions">
-          <button id="edit-post-button">✎ edit</button>
-          <button id="delete-post-button">delete</button>
+        <div class="user-actions">
+          <button id="edit-post-button" postID="{{post.id}}">✎ edit</button>
+          <button id="delete-post-button" postID="{{post.id}}">delete</button>
         </div>
         <div id="blog-title">
-          <h5 class="card-title">{{post.title}}</h5>
+          <textarea id='title-input' placeholder="title">{{post.title}}</textarea>
         </div>
         <div id="blog-content">
-          <p class="card-text">{{post.body}}</p>
+          <textarea id="text-input" placeholder="body">{{post.body}}</textarea>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="header-div">
-  <h3 class="comment-header">Comments</h3>
-</div>
-
-<div class="comment-section">
-  {{#each comments}}
-  <div id="comment-div">
-    <div class="card mb-3" id="comment">
-      <div class="card-header">
-        <p>Name</p>
-        <p>timestamp</p>
-      </div>
-      <div class="card-body">
-        <p class="card-text">{{this.body}}</p>
-      </div>
-    </div>
-  </div>
-  {{/each}}
 </div>
 
 <script src="/js/logout.js"></script>
+<script src="/js/post.js"></script>

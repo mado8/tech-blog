@@ -1,17 +1,12 @@
-const postButton = document.getElementById('post-button');
-const deleteButton = document.getElementById('delete-button');
-const newPostButton = document.getElementById('new-post');
+let newPostButton;
+let postButton;
+let deleteButton;
+let editButton;
 
-const getPost = async (post_id) => {
-    const response = await fetch (`/api/post/${post_id}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (!response.ok) {
-        alert(response.statusText);
-    }
-};
+postButton = document.getElementById('post-create-button');
+deleteButton = document.getElementById('delete-post-button');
+newPostButton = document.getElementById('new-post');
+editButton = document.getElementById('edit-post-button')
 
 const newPost = () => {
     return window.location.href = '/create'
@@ -20,17 +15,17 @@ const newPost = () => {
 const createPost = async (event) => {
     event.preventDefault()
 
-    const username = document.querySelector('#username-signup').value.trim()
-    const password = document.querySelector('#password-signup').value.trim()
+    const title = document.querySelector('#title-input').value.trim()
+    const text = document.querySelector('#text-input').value.trim()
   
-    userdata = { username: username, password: password }
+    postdata = { title: title, body: text }
     try {
-      fetch('/api/user', {
+      fetch('/api/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userdata),
+        body: JSON.stringify(postdata),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -45,17 +40,68 @@ const createPost = async (event) => {
     }
 };
 
-const deletePost = async (post_id) => {
-    const response = await fetch (`/api/post/${post_id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-    });
+const updatePost = async (event) => {
+  event.preventDefault()
 
-    if (response.ok) {
-        // render loggedin homepage
-    } else {
-        alert(response.statusText);
+  const title = document.querySelector('#title-input').value.trim()
+  const text = document.querySelector('#text-input').value.trim()
+  const post_id = editButton.getAttribute("postID")
+
+  postdata = { title: title, body: text }
+  try {
+    await fetch(`/api/post/${post_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postdata),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data)
+        window.location.href = `/dashboard`
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+const deletePost = async (event) => {
+    event.preventDefault()
+
+    const post_id = deleteButton.getAttribute("postID")
+    try {
+      await fetch (`/api/post/${post_id}`, {
+          method: 'DELETE',
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data)
+        window.location.href = `/dashboard`
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+    } catch (err) {
+      console.log(err)
     }
 };
 
-newPostButton.addEventListener('click', newPost);
+if(newPostButton !== null) {
+  newPostButton.addEventListener('click', newPost);
+}
+
+if(postButton !== null) {
+  postButton.addEventListener('click', createPost);
+}
+
+if(editButton !== null) {
+  editButton.addEventListener('click', updatePost);
+}
+
+if(deleteButton !== null) {
+  deleteButton.addEventListener('click', deletePost);
+}

@@ -28,18 +28,18 @@
     <div class="submit-section">
         <button class="wide-button btn btn-primary primary-button" id="new-post" type="submit">New Post</button>
     </div>
-    {{#each user.post}}
+    {{#each post}}
     <div class="post-card">
     <div class="card mb-3">
         <div id="home-center">
-            <a class="home-post" href="/api/post/{{id}}">
+            <a class="home-post" href="/edit/{{id}}">
                 <div class="card-body card-border">
 
                     <div class="home-center">
                         <div>
 
-                            <h5 class="card-title home-center">{{user.post.title}}</h5>
-                            <p class="card-text">{{user.post.body}}</p>
+                            <h5 class="card-title home-center">{{this.title}}</h5>
+                            <p class="card-text">{{this.body}}</p>
                             <div class="card-desc">
                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>

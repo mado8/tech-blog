@@ -31,7 +31,7 @@ router.post('/logout', (req, res) => {
   }
 })
 
-router.get('/home', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({ include: [User] })
     // map function to seperate data

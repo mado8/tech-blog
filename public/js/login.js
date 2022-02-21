@@ -19,7 +19,7 @@ const loginFormHandler = async (event) => {
         if(data.message == 'Incorrect username or password, please try again') {
           return;
         }
-        window.location.href = `/home`
+        window.location.href = `/`
       })
       .catch((error) => {
         console.error('Error:', error)

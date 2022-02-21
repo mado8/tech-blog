@@ -14,6 +14,8 @@ router.get('/:id', withAuth , async (req, res) => {
             include: [User]
         })
 
+        req.session.post_id = req.params.id;
+
         if(!postData) {
             return res.status(404).json({ message: 'Post ID not Found.' });
         };
